@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="eshopmysql" transaction-type="JTA">
+        <jta-data-source>jdbc/eshopMySQL</jta-data-source>
+        <class>com.freimanvs.shops.eshop.entities.Goods</class>
+        <class>com.freimanvs.shops.eshop.entities.Order</class>
+        <class>com.freimanvs.shops.eshop.entities.User</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="eclipselink.weaving.fetchgroups" value="false"/>
+        </properties>
+    </persistence-unit>
+</persistence>

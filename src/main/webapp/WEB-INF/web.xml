@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+  <display-name>Archetype Created Web Application</display-name>
+
+  <welcome-file-list>
+    <!--<welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>-->
+    <!--<welcome-file>/html5/index.jsp</welcome-file>-->
+    <welcome-file>/eshop/shop.jsp</welcome-file>
+  </welcome-file-list>
+
+  <context-param>
+    <param-name>DB_IP</param-name>
+    <param-value>localhost</param-value>
+    <!--<param-value>192.168.99.100</param-value>-->
+  </context-param>
+
+  <session-config>
+    <session-timeout>10</session-timeout> <!-- minutes -->
+    <cookie-config>
+      <max-age>600</max-age> <!-- seconds, has higher priority than session-timeout -->
+    </cookie-config>
+    <tracking-mode>COOKIE</tracking-mode>
+  </session-config>
+
+  <jsp-config>
+    <jsp-property-group>
+      <url-pattern>*.jsp</url-pattern>
+      <page-encoding>UTF-8</page-encoding>
+    </jsp-property-group>
+  </jsp-config>
+
+  <!--form auth-->
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>eshopRealm</realm-name>
+    <form-login-config>
+      <form-login-page>/WEB-INF/jsp/login.jsp</form-login-page>
+      <form-error-page>/WEB-INF/jsp/error.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>admin</web-resource-name>
+      <url-pattern>/admin</url-pattern>
+      <url-pattern>/admin/*</url-pattern>
+      <url-pattern>/api/*</url-pattern>
+      <!--<url-pattern>/api/*</url-pattern>-->
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>user</web-resource-name>
+      <url-pattern>/order</url-pattern>
+      <url-pattern>/order/*</url-pattern>
+      <url-pattern>/login</url-pattern>
+      <url-pattern>/login/*</url-pattern>
+      <url-pattern>/sendEmail</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>user</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>allowed</web-resource-name>
+      <!--<url-pattern>/api/v1/auth/login</url-pattern>-->
+      <!--<url-pattern>/api/v1/auth/principal</url-pattern>-->
+      <!--<url-pattern>/api/v1/auth/logout</url-pattern>-->
+      <url-pattern>/api/v1/goods</url-pattern>
+      <http-method>GET</http-method>
+    </web-resource-collection>
+  </security-constraint>
+
+  <security-role>
+    <description/>
+    <role-name>admin</role-name>
+  </security-role>
+  <security-role>
+    <description/>
+    <role-name>user</role-name>
+  </security-role>
+
+  <error-page>
+    <error-code>403</error-code>
+    <location>/WEB-INF/jsp/accessDenied.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/jsp/404.jsp</location>
+  </error-page>
+</web-app>
