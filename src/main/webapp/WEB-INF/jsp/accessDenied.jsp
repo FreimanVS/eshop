@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="counter" uri="/custom" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +36,7 @@
     </div>
 </div>
 
+<counter:counter/>
 
 <script src="${pageContext.request.contextPath}eshop/js/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/eshop/js/price-range.js"></script>
@@ -43,14 +46,3 @@
 <script src="${pageContext.request.contextPath}/eshop/js/main.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-<%--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>--%>
-
-<%--<div>403 ACCESS DENIED</div>--%>
-<%--<div><a href="${pageContext.request.contextPath}/">main page</a></div>--%>

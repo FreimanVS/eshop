@@ -1,200 +1,165 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="counter" uri="/custom" %>
 
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/html5/assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="${pageContext.request.contextPath}/html5/assets/css/noscript.css" /></noscript>
-
-    <%--<link rel="stylesheet" media="all" type="text/css" href="${pageContext.request.contextPath}/jsp/css/style.css" />--%>
-    <link id="contextPathHolder" data-contextPath="${pageContext.request.contextPath}"/>
-    <title>list of goods</title>
-    <%--<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>--%>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/js/cart.js" type="text/javascript"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Cart</title>
+	<link id="contextPathHolder" data-contextPath="${pageContext.request.contextPath}"/>
+    <link href="${pageContext.request.contextPath}/eshop/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/eshop/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/eshop/css/prettyPhoto.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/eshop/css/price-range.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/eshop/css/animate.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/eshop/css/main.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/eshop/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="${pageContext.request.contextPath}/eshop/js/html5shiv.js"></script>
+    <script src="${pageContext.request.contextPath}/eshop/js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/eshop/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${pageContext.request.contextPath}/eshop/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${pageContext.request.contextPath}/eshop/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${pageContext.request.contextPath}/eshop/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/eshop/images/ico/apple-touch-icon-57-precomposed.png">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/js/cart.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/js/search.js" type="text/javascript"></script>
 </head>
-<body class="is-preload">
 
-<!-- Page Wrapper -->
-<div id="page-wrapper">
+<body>
+	<header id="header">
+		<%@ include file="/WEB-INF/jsp/parts/header.jsp"%>
+	</header>
 
-    <!-- Header -->
-    <header id="header">
-        <h1><a href="index.html">Spectral</a></h1>
-        <nav id="nav">
-            <ul>
-                <li class="special">
-                    <a href="${pageContext.request.contextPath}/cart"
-                    <%--class="menuToggle"--%>
-                    ><span>Cart</span></a>
-                    <%--<a href="${pageContext.request.contextPath}/cart"></a>--%>
-                    <div id="menu">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="generic.jsp">Generic</a></li>
-                            <li><a href="elements.html">Elements</a></li>
-                            <li><a href="#">Sign Up</a></li>
-                            <li><a href="#">Log In</a></li>
-                        </ul>
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description"></td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+					<c:forEach var="entry" items="${mapOfGoods}">
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="${pageContext.request.contextPath}/eshop/images/shop/<c:out value="${entry.key.img}"/>"  alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href=""><c:out value="${entry.key.name}"/></a></h4>
+								<p>Web ID: <c:out value="${entry.key.id}"/></p>
+							</td>
+							<td class="cart_price">
+								<p><c:out value="${entry.key.price}"/></p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<button class="cart_quantity_down" onclick="quantityDown(<c:out value="${entry.key.id}"/>)"> - </button>
+									<input class="cart_quantity_input" type="text" name="<c:out value="${entry.key.id}"/>" value="<c:out value="${entry.value}"/>" autocomplete="off" size="2">
+									<button class="cart_quantity_up" onclick="quantityUp(<c:out value="${entry.key.id}"/>)"> + </button>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">${entry.key.price * entry.value}</p>
+							</td>
+							<td class="cart_delete">
+								<button class="cart_quantity_delete" onclick="removeFromCart(<c:out value="${entry.key.id}"/>)"><i class="fa fa-times"></i></button>
+							</td>
+						</tr>
+					</c:forEach>
+
+					<p>
+						<td class="cart_product">
+
+						</td>
+						<td class="cart_description">
+							TOTAL
+						</td>
+						<td class="cart_price">
+
+						</td>
+						<td class="cart_quantity">
+
+						</td>
+						<td class="cart_total">
+							<p class="cart_total_price"><c:set var="total" value="${0}"/>
+								<c:forEach var="goods" items="${mapOfGoods}">
+									<c:set var="total" value="${total + goods.key.price * goods.value}" />
+								</c:forEach>
+								<c:out value="${total}"/></td>
+							</p>
+						<td class="cart_delete">
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+
+
+
+
+
+    <div class="shopper-informations">
+        <div class="row">
+            <div class="col-sm-offset-4 clearfix">
+                <div class="bill-to">
+                    <p>Bill To</p>
+                    <div class="form-one">
+                        <form method="POST" action="${pageContext.request.contextPath}/order">
+                            <%--<label for="name">Name:</label>--%>
+                            <input id="name" type="text" name="name" placeholder="name"/>
+                            <%--<label for="phone">Phone:</label>--%>
+                            <input id="phone" type="text" name="phone" placeholder="phone"/>
+                            <%--<label for="phone">Street:</label>--%>
+                            <input id="street" type="text" name="street" placeholder="street"/>
+                            <%--<label for="house">House:</label>--%>
+                            <input id="house" type="text" name="house" placeholder="house"/>
+                            <%--<br> <label for="apartment">Apartment:</label>--%>
+                            <input id="apartment" type="text" name="apartment" placeholder="apartment"/>
+                            <%--<label for="floor">Floor:</label>--%>
+                            <input id="floor" type="text" name="floor" placeholder="floor"/>
+                            <%--<label for="codeEntrance">Code of entrance:</label>--%>
+                            <input id="codeEntrance" type="codeEntrance" name="codeEntrance" placeholder="code of entrance"/>
+                            <%--<br> <label for="comment">Any additional information:</label>--%>
+                            <textarea id="comment" name="comment" placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
+                            <button class="btn btn-default check_out">Send order</button>
+                        </form>
                     </div>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main -->
-    <article id="main">
-        <header>
-            <h2>Generic Page</h2>
-            <p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>
-        </header>
-        <section class="wrapper style5">
-            <div class="inner">
-                <h3>Goods</h3>
-                <p>
-                    <table>
-                        <caption><b>Goods</b></caption>
-                        <thead>
-                        <tr>
-                            <th>Goods</th>
-                            <th>Count</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        <c:forEach var="entry" items="${mapOfGoods}">
-                            <tr>
-                                <td align=\"center\"><c:out value="${entry.key}"/></td>
-                                <td align=\"center\"><input name="<c:out value="${entry.key.id}"/>" type="number" min="1" max="99" step="1" value="<c:out value="${entry.value}"/>" style="color: black"></td>
-                                <td align=\"center\"><button onclick="updateCart(<c:out value="${entry.key.id}"/>)">update</button></td>
-                                <td align=\"center\"><button onclick="removeFromCart(<c:out value="${entry.key.id}"/>)">remove</button></td>
-                            </tr>
-                        </c:forEach>
-
-                        </tbody>
-                        <%--<tfoot>--%>
-                        <%--<tr>--%>
-                        <%--<th colspan=\"3\">goods</th>--%>
-                        <%--</tr>--%>
-                        <%--</tfoot>--%>
-                    </table>
-                </p>
-
-                <hr />
-
-                <h4>DELIVERY</h4>
-                <p>
-                    <form method="POST" action="${pageContext.request.contextPath}/order">
-                        <input type="text" name="name" placeholder="name"/>
-                        <input type="text" name="phone" placeholder="phone"/>
-                        <input type="text" name="street" placeholder="street"/>
-                        <input type="text" name="house" placeholder="house"/>
-                        <input type="text" name="apartment" placeholder="apartment"/>
-                        <input type="text" name="floor" placeholder="floor"/>
-                        <input type="text" name="codeEntrance" placeholder="code of entrance"/>
-                        <textarea name="comment"></textarea>
-                        <button>Send order</button>
-                    </form>
-                </p>
+                </div>
             </div>
-        </section>
-    </article>
+        </div>
+    </div>
 
-    <!-- Footer -->
-    <footer id="footer">
-        <ul class="icons">
-            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-            <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-        </ul>
-        <ul class="copyright">
-            <li>&copy; Untitled</li>
-        </ul>
-    </footer>
+	<footer id="footer">
+		<%@ include file="/WEB-INF/jsp/parts/footer.jsp"%>
+	</footer>
 
-</div>
-
-<!-- Scripts -->
-<script src="${pageContext.request.contextPath}/html5/assets/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/html5/assets/js/jquery.scrollex.min.js"></script>
-<script src="${pageContext.request.contextPath}/html5/assets/js/jquery.scrolly.min.js"></script>
-<script src="${pageContext.request.contextPath}/html5/assets/js/browser.min.js"></script>
-<script src="${pageContext.request.contextPath}/html5/assets/js/breakpoints.min.js"></script>
-<script src="${pageContext.request.contextPath}/html5/assets/js/util.js"></script>
-<script src="${pageContext.request.contextPath}/html5/assets/js/main.js"></script>
-
+	<counter:counter/>
+    <script src="${pageContext.request.contextPath}/eshop/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/eshop/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/eshop/js/jquery.scrollUp.min.js"></script>
+    <script src="${pageContext.request.contextPath}/eshop/js/jquery.prettyPhoto.js"></script>
+    <script src="${pageContext.request.contextPath}/eshop/js/main.js"></script>
 </body>
 </html>
-<%--<!DOCTYPE html>--%>
-<%--<html lang="en">--%>
-<%--<head>--%>
-    <%--<meta charset="UTF-8">--%>
-    <%--&lt;%&ndash;<link rel="stylesheet" media="all" type="text/css" href="${pageContext.request.contextPath}/jsp/css/style.css" />&ndash;%&gt;--%>
-    <%--<link id="contextPathHolder" data-contextPath="${pageContext.request.contextPath}"/>--%>
-    <%--<title>list of goods</title>--%>
-    <%--&lt;%&ndash;<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>&ndash;%&gt;--%>
-    <%--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>--%>
-    <%--<script src="${pageContext.request.contextPath}/js/cart.js" type="text/javascript"></script></head>--%>
-<%--<body>--%>
-<%--<header>--%>
-    <%--&lt;%&ndash;<%@ include file="parts/header.jsp"%>&ndash;%&gt;--%>
-<%--</header>--%>
-<%--<main>--%>
-    <%--<section>--%>
-        <%--<article>--%>
-            <%--<table>--%>
-                <%--<caption><b>Goods</b></caption>--%>
-                <%--<thead>--%>
-                    <%--<tr>--%>
-                        <%--<th>Goods</th>--%>
-                        <%--<th>Count</th>--%>
-                    <%--</tr>--%>
-                <%--</thead>--%>
-                <%--<tbody>--%>
-
-                <%--<c:forEach var="entry" items="${mapOfGoods}">--%>
-                    <%--<tr>--%>
-                        <%--<td align=\"center\"><c:out value="${entry.key}"/></td>--%>
-                        <%--<td align=\"center\"><input name="<c:out value="${entry.key.id}"/>" type="number" min="1" max="99" step="1" value="<c:out value="${entry.value}"/>"></td>--%>
-                        <%--<td align=\"center\"><button onclick="updateCart(<c:out value="${entry.key.id}"/>)">update</button></td>--%>
-                        <%--<td align=\"center\"><button onclick="removeFromCart(<c:out value="${entry.key.id}"/>)">remove</button></td>--%>
-                    <%--</tr>--%>
-                <%--</c:forEach>--%>
-
-                <%--</tbody>--%>
-                <%--&lt;%&ndash;<tfoot>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<th colspan=\"3\">goods</th>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;</tfoot>&ndash;%&gt;--%>
-            <%--</table>--%>
-        <%--</article>--%>
-
-        <%--<article>--%>
-            <%--<h2>DELIVERY</h2>--%>
-            <%--<form method="POST" action="${pageContext.request.contextPath}/order">--%>
-                <%--<input type="text" name="name" placeholder="name"/>--%>
-                <%--<input type="text" name="phone" placeholder="phone"/>--%>
-                <%--<input type="text" name="street" placeholder="street"/>--%>
-                <%--<input type="text" name="house" placeholder="house"/>--%>
-                <%--<input type="text" name="apartment" placeholder="apartment"/>--%>
-                <%--<input type="text" name="floor" placeholder="floor"/>--%>
-                <%--<input type="text" name="codeEntrance" placeholder="code of entrance"/>--%>
-                <%--<textarea name="comment"></textarea>--%>
-                <%--<button>Send order</button>--%>
-            <%--</form>--%>
-        <%--</article>--%>
-    <%--</section>--%>
-<%--</main>--%>
-<%--<aside>--%>
-    <%--&lt;%&ndash;<%@ include file="parts/aside.jsp"%>&ndash;%&gt;--%>
-<%--</aside>--%>
-<%--<footer>--%>
-    <%--&lt;%&ndash;<%@ include file="parts/footer.jsp"%>&ndash;%&gt;--%>
-<%--</footer>--%>
-<%--</body>--%>
-<%--</html>--%>

@@ -6,8 +6,6 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <welcome-file-list>
-    <!--<welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>-->
-    <!--<welcome-file>/html5/index.jsp</welcome-file>-->
     <welcome-file>/eshop/shop.jsp</welcome-file>
   </welcome-file-list>
 

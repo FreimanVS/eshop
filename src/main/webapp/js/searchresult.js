@@ -19,65 +19,11 @@ $(document).ready(function() {
             appendJson = "<h2 class=\"title text-center\">Features Items</h2>";
             if (data.length <= 6) {
                 for (var i = 0; i < data.length; i++) {
-                    appendJson = appendJson +
-                        "<div class=\"col-sm-4\">\n" +
-                        "\t\t\t\t\t\t\t<div class=\"product-image-wrapper\">\n" +
-                        "\t\t\t\t\t\t\t\t<div class=\"single-products\">\n" +
-                        "\t\t\t\t\t\t\t\t\t<div class=\"productinfo text-center\">\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<img src=\"" + contextPath + "/eshop/" + "images/shop/" + data[i].img + "\" alt=\"\" />\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<h2>" + data[i].price + "</h2>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<p>" + data[i].name + "</p>\n" +
-                        // "\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<button value='" + data[i].id + "' onclick='addToCart(" + data[i].id + ")' class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>add to cart</button>\n" +
-                        "\t\t\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t\t\t\t<div class=\"product-overlay\">\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<div class=\"overlay-content\">\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<h2>" + data[i].price + "</h2>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<p>" + data[i].name + "</p>\n" +
-                        // "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<button value='" + data[i].id + "' onclick='addToCart(" + data[i].id + ")' class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>add to cart</button>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t\t\t<div class=\"choose\">\n" +
-                        "\t\t\t\t\t\t\t\t\t<ul class=\"nav nav-pills nav-justified\">\n" +
-                        // "\t\t\t\t\t\t\t\t\t\t<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to wishlist</a></li>\n" +
-                        // "\t\t\t\t\t\t\t\t\t\t<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to compare</a></li>\n" +
-                        "\t\t\t\t\t\t\t\t\t</ul>\n" +
-                        "\t\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t</div>"
+                    goods(i);
                 }
             } else {
                 for (var i = 0; i < 6; i++) {
-                    appendJson = appendJson +
-                        "<div class=\"col-sm-4\">\n" +
-                        "\t\t\t\t\t\t\t<div class=\"product-image-wrapper\">\n" +
-                        "\t\t\t\t\t\t\t\t<div class=\"single-products\">\n" +
-                        "\t\t\t\t\t\t\t\t\t<div class=\"productinfo text-center\">\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<img src=\"" + contextPath + "/eshop/" + "images/shop/" + data[i].img + "\" alt=\"\" />\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<h2>" + data[i].price + "</h2>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<p>" + data[i].name + "</p>\n" +
-                        // "\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<button value='" + data[i].id + "' onclick='addToCart(" + data[i].id + ")' class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>add to cart</button>\n" +
-                        "\t\t\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t\t\t\t<div class=\"product-overlay\">\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<div class=\"overlay-content\">\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<h2>" + data[i].price + "</h2>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<p>" + data[i].name + "</p>\n" +
-                        // "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<button value='" + data[i].id + "' onclick='addToCart(" + data[i].id + ")' class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>add to cart</button>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t\t\t<div class=\"choose\">\n" +
-                        "\t\t\t\t\t\t\t\t\t<ul class=\"nav nav-pills nav-justified\">\n" +
-                        // "\t\t\t\t\t\t\t\t\t\t<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to wishlist</a></li>\n" +
-                        // "\t\t\t\t\t\t\t\t\t\t<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to compare</a></li>\n" +
-                        "\t\t\t\t\t\t\t\t\t</ul>\n" +
-                        "\t\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t\t</div>\n" +
-                        "\t\t\t\t\t\t</div>"
+                    goods(i);
                 }
             }
 
@@ -87,7 +33,7 @@ $(document).ready(function() {
                 appendJson = appendJson + "\t\t\t\t\t\t\t<li><a href=\"#\" onclick=\"prevPage();return false;\">prev</a></li>\n";
             }
 
-            if (curPage <= data.length / 6) {
+            if (curPage * 6 < data.length) {
                 appendJson = appendJson + "\t\t\t\t\t\t\t<li><a href=\"#\" onclick=\"nextPage();return false;\">next</a></li>\n";
 
             }
@@ -130,34 +76,7 @@ function paginator() {
     }
 
     for (var i = from; i <= to; i++) {
-        appendJson = appendJson +
-            "<div class=\"col-sm-4\">\n" +
-            "\t\t\t\t\t\t\t<div class=\"product-image-wrapper\">\n" +
-            "\t\t\t\t\t\t\t\t<div class=\"single-products\">\n" +
-            "\t\t\t\t\t\t\t\t\t<div class=\"productinfo text-center\">\n" +
-            "\t\t\t\t\t\t\t\t\t\t<img src=\"" + contextPath + "/eshop/" + "images/shop/" + data[i].img + "\" alt=\"\" />\n" +
-            "\t\t\t\t\t\t\t\t\t\t<h2>" + data[i].price + "</h2>\n" +
-            "\t\t\t\t\t\t\t\t\t\t<p>" + data[i].name + "</p>\n" +
-            // "\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>\n" +
-            "\t\t\t\t\t\t\t\t\t\t<button value='" + data[i].id + "' onclick='addToCart(" + data[i].id + ")' class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>add to cart</button>\n" +
-            "\t\t\t\t\t\t\t\t\t</div>\n" +
-            "\t\t\t\t\t\t\t\t\t<div class=\"product-overlay\">\n" +
-            "\t\t\t\t\t\t\t\t\t\t<div class=\"overlay-content\">\n" +
-            "\t\t\t\t\t\t\t\t\t\t\t<h2>" + data[i].price + "</h2>\n" +
-            "\t\t\t\t\t\t\t\t\t\t\t<p>" + data[i].name + "</p>\n" +
-            // "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>\n" +
-            "\t\t\t\t\t\t\t\t\t\t\t<button value='" + data[i].id + "' onclick='addToCart(" + data[i].id + ")' class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>add to cart</button>\n" +
-            "\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            "\t\t\t\t\t\t\t\t\t</div>\n" +
-            "\t\t\t\t\t\t\t\t</div>\n" +
-            "\t\t\t\t\t\t\t\t<div class=\"choose\">\n" +
-            "\t\t\t\t\t\t\t\t\t<ul class=\"nav nav-pills nav-justified\">\n" +
-            // "\t\t\t\t\t\t\t\t\t\t<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to wishlist</a></li>\n" +
-            // "\t\t\t\t\t\t\t\t\t\t<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to compare</a></li>\n" +
-            "\t\t\t\t\t\t\t\t\t</ul>\n" +
-            "\t\t\t\t\t\t\t\t</div>\n" +
-            "\t\t\t\t\t\t\t</div>\n" +
-            "\t\t\t\t\t\t</div>";
+        goods(i);
     }
 
     appendJson = appendJson + "<ul class=\"pagination\">\n";
@@ -184,4 +103,32 @@ function prevPage() {
 function nextPage() {
     curPage = curPage + 1;
     paginator();
+}
+
+function goods(i) {
+    var data = curData;
+    appendJson = appendJson +
+        "<div class=\"col-sm-4\">\n" +
+        "\t\t\t\t\t\t\t<div class=\"product-image-wrapper\">\n" +
+        "\t\t\t\t\t\t\t\t<div class=\"single-products\">\n" +
+        "\t\t\t\t\t\t\t\t\t<div class=\"productinfo text-center\">\n" +
+        "\t\t\t\t\t\t\t\t\t\t<img src=\"" + contextPath + "/eshop/" + "images/shop/" + data[i].img + "\" alt=\"\" />\n" +
+        "\t\t\t\t\t\t\t\t\t\t<h2>" + data[i].price + "</h2>\n" +
+        "\t\t\t\t\t\t\t\t\t\t<p>" + data[i].name + "</p>\n" +
+        "\t\t\t\t\t\t\t\t\t\t<button value='" + data[i].id + "' onclick='addToCart(" + data[i].id + ")' class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>add to cart</button>\n" +
+        "\t\t\t\t\t\t\t\t\t</div>\n" +
+        "\t\t\t\t\t\t\t\t\t<div class=\"product-overlay\">\n" +
+        "\t\t\t\t\t\t\t\t\t\t<div class=\"overlay-content\">\n" +
+        "\t\t\t\t\t\t\t\t\t\t\t<h2>" + data[i].price + "</h2>\n" +
+        "\t\t\t\t\t\t\t\t\t\t\t<p>" + data[i].name + "</p>\n" +
+        "\t\t\t\t\t\t\t\t\t\t\t<button value='" + data[i].id + "' onclick='addToCart(" + data[i].id + ")' class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>add to cart</button>\n" +
+        "\t\t\t\t\t\t\t\t\t\t</div>\n" +
+        "\t\t\t\t\t\t\t\t\t</div>\n" +
+        "\t\t\t\t\t\t\t\t</div>\n" +
+        "\t\t\t\t\t\t\t\t<div class=\"choose\">\n" +
+        "\t\t\t\t\t\t\t\t\t<ul class=\"nav nav-pills nav-justified\">\n" +
+        "\t\t\t\t\t\t\t\t\t</ul>\n" +
+        "\t\t\t\t\t\t\t\t</div>\n" +
+        "\t\t\t\t\t\t\t</div>\n" +
+        "\t\t\t\t\t\t</div>";
 }

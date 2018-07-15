@@ -30,14 +30,6 @@ public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        <input type="text" name="name" placeholder="name"/>
-//                <input type="text" name="phone" placeholder="phone"/>
-//                <input type="text" name="street" placeholder="street"/>
-//                <input type="text" name="house" placeholder="house"/>
-//                <input type="text" name="apartment" placeholder="apartment"/>
-//                <input type="text" name="floor" placeholder="floor"/>
-//                <input type="text" name="codeEntrance" placeholder="code of entrance"/>
-//                <textarea name="comment"></textarea>
         String name = req.getParameter("name");
         String phone = req.getParameter("phone");
         String street = req.getParameter("street");

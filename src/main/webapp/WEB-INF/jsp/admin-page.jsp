@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="counter" uri="/custom" %>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -21,29 +22,15 @@
 <main>
     <section>
         <article>
-            <h2>REPORTS</h2>
-            <p>
-                <a href="${pageContext.request.contextPath}/report?report=employee&format=pdf">
-                    <img src="http://www.devona.ru/upload/medialibrary/9a1/9a11a476e0fb4211ed50ebb03e591918.png"
-                         alt="pdf-download" style="width:40px;height:40px;border:0;">
-                </a>
-                <a href="${pageContext.request.contextPath}/mail?report=employee&format=pdf">
-                    send pdf to email
-                </a>
-                <a href="${pageContext.request.contextPath}/report?report=employee&format=xml">
-                    <img src="https://cdn0.iconfinder.com/data/icons/file-formats-flat-colorful-1/2048/1754_-_XML-512.png"
-                         alt="xml-download" style="width:40px;height:40px;border:0;">
-                </a>
-                <a href="${pageContext.request.contextPath}/mail?report=employee&format=xml">
-                    send xml to email
-                </a>
-            </p>
-            <p id="allEmployees"></p>
-        </article>
-        <article>
             <h2>SWAGGER</h2>
             <p>
-                <a href="${pageContext.request.contextPath}/swagger">to a swagger page</a>
+                <a href="${pageContext.request.contextPath}/swagger">swagger page</a>
+            </p>
+        </article>
+        <article>
+            <h2>BACK</h2>
+            <p>
+                <a href="${pageContext.request.contextPath}/">main page</a>
             </p>
         </article>
     </section>
@@ -51,6 +38,8 @@
 <aside>
 </aside>
 <footer>
+
+    <counter:counter/>
 </footer>
 </body>
 </html>

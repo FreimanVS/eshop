@@ -37,6 +37,9 @@
         window.onload = function() {
             var ip = location.hostname;
             var port = location.port;
+            if (port == "") {
+                port = 80;
+            }
 
             // Build a system
             const ui = SwaggerUIBundle({

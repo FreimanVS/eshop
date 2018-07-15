@@ -38,8 +38,5 @@ public class SearchServlet extends HttpServlet {
         try (PrintWriter pw = resp.getWriter()) {
             pw.println(json);
         }
-
-//        req.setAttribute("goods", goods);
-//        req.getRequestDispatcher("/eshop/search.jsp").forward(req, resp);
     }
 }
