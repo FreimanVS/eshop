@@ -61,7 +61,6 @@ public class UserDAOImpl implements UserDAO {
         objFromDB.setLogin(obj.getLogin());
         objFromDB.setPassword(obj.getPassword());
         objFromDB.setEmail(obj.getEmail());
-//        objFromDB.setOrder(obj.getOrder());
         objFromDB.setRoles(obj.getRoles());
         em.flush();
     }

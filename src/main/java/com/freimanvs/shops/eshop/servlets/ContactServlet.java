@@ -1,17 +1,14 @@
 package com.freimanvs.shops.eshop.servlets;
 
-import com.freimanvs.shops.eshop.jasper.ReportFiller;
 import com.freimanvs.shops.eshop.mail.EmailUtil;
 import org.apache.log4j.Logger;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -20,9 +17,6 @@ public class ContactServlet extends HttpServlet {
 
     @Inject
     private EmailUtil emailUtil;
-
-    @Resource(mappedName = "jdbc/eshopMySQL")
-    private DataSource dataSource;
 
     private static final Logger LOGGER = Logger.getLogger(ContactServlet.class);
 
@@ -42,10 +36,6 @@ public class ContactServlet extends HttpServlet {
 
         response.setContentType("text/html");
         try (PrintWriter pw = response.getWriter()){
-
-            ReportFiller filler = new ReportFiller();
-            filler.setDataSource(dataSource);
-
             emailUtil.sendEmail(fromName, fromEmail, TO_EMAIL, subject, message);
 
             pw.println("<html>");

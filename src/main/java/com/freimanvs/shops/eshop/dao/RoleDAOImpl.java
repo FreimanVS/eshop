@@ -59,7 +59,6 @@ public class RoleDAOImpl implements RoleDAO {
     public void updateById(long id, Role obj) {
         Role objFromDB = getById(id);
         objFromDB.setName(obj.getName());
-//        objFromDB.setUsers(obj.getUsers());
         em.flush();
     }
 

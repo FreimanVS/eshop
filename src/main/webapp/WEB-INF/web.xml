@@ -46,7 +46,6 @@
       <url-pattern>/admin</url-pattern>
       <url-pattern>/admin/*</url-pattern>
       <url-pattern>/api/*</url-pattern>
-      <!--<url-pattern>/api/*</url-pattern>-->
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
@@ -70,9 +69,6 @@
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>allowed</web-resource-name>
-      <!--<url-pattern>/api/v1/auth/login</url-pattern>-->
-      <!--<url-pattern>/api/v1/auth/principal</url-pattern>-->
-      <!--<url-pattern>/api/v1/auth/logout</url-pattern>-->
       <url-pattern>/api/v1/goods</url-pattern>
       <http-method>GET</http-method>
     </web-resource-collection>

@@ -5,9 +5,7 @@ import com.freimanvs.shops.eshop.entities.Goods;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Named

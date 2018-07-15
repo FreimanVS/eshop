@@ -113,12 +113,7 @@
 				</table>
 			</div>
 		</div>
-	</section> <!--/#cart_items-->
-
-
-
-
-
+	</section>
 
     <div class="shopper-informations">
         <div class="row">
