@@ -6,7 +6,6 @@ import org.apache.commons.codec.digest.DigestUtils;
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
-//@Stateless
 @Dependent
 public class SecurityBeanImpl implements SecurityBean {
 

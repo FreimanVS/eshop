@@ -29,7 +29,6 @@ public class CounterTagHandler extends SimpleTagSupport {
         String key = context.getPage().getClass().getSimpleName();
         Long value = result.getOrDefault(key, 0L) + 1;
         counterMap.put(key, value);
-//        context.getOut().print(value);
         LOGGER.info("page: " + key + "; count: " + value);
     }
 

@@ -20,10 +20,6 @@ import javax.ws.rs.NotFoundException;
 
 public class NotFoundInterceptor {
 
-//    private GoodsService goodsService
-//            = CDI.current().select(GoodsService.class).get()
-//            ;
-
     @EJB
     private GoodsDAO goodsDAO;
 

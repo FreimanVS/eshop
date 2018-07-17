@@ -5,7 +5,6 @@ import com.freimanvs.shops.eshop.entities.Goods;
 import java.io.Serializable;
 import java.util.Map;
 
-//@Remote
 public interface CartBean extends Serializable {
     void add(Goods goods);
     Map<Goods, Long> get();
