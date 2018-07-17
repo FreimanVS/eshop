@@ -1,6 +1,6 @@
 package com.freimanvs.shops.eshop.servlets;
 
-import com.freimanvs.shops.eshop.mail.EmailUtil;
+import com.freimanvs.shops.eshop.mail.EmailService;
 import org.apache.log4j.Logger;
 
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 public class ContactServlet extends HttpServlet {
 
     @Inject
-    private EmailUtil emailUtil;
+    private EmailService emailService;
 
     private static final Logger LOGGER = Logger.getLogger(ContactServlet.class);
 
@@ -36,7 +36,7 @@ public class ContactServlet extends HttpServlet {
 
         response.setContentType("text/html");
         try (PrintWriter pw = response.getWriter()){
-            emailUtil.sendEmail(fromName, fromEmail, TO_EMAIL, subject, message);
+            emailService.sendEmail(fromName, fromEmail, TO_EMAIL, subject, message);
 
             pw.println("<html>");
             pw.println("<p>The file has been sent successfully</p>");

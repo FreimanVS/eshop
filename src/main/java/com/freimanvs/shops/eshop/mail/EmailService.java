@@ -2,28 +2,20 @@ package com.freimanvs.shops.eshop.mail;
 
 import org.apache.log4j.Logger;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
 import java.util.Date;
 
 @RequestScoped
-public class EmailUtil {
+public class EmailService {
 
     @Resource(name = "mail/Gmail")
     private Session session;
 
-    private static final Logger LOGGER = Logger.getLogger(EmailUtil.class);
+    private static final Logger LOGGER = Logger.getLogger(EmailService.class);
 
     public void sendEmail(String fromPerson, String fromEmail, String toEmail, String subject, String body){
         try {

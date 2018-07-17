@@ -23,30 +23,19 @@ public class UserInfoFilter implements Filter {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse resp = (HttpServletResponse) response;
 
-            //no filter
-            if (false
-//                    req.getRequestURI().equals("/jsoupserver")
-//                    || req.getRequestURI().equals("/rateserver")
-                    ) {
+            if (req.getCookies() == null || Arrays.stream(req.getCookies()).noneMatch(
+                    cookie -> cookie.getName().equals("browser-version") && cookie.getValue().equals("ok"))) {
 
-                chain.doFilter(request, response);
+                String userAgent = req.getHeader("User-Agent");
 
-            } else {
-
-                if (req.getCookies() == null || Arrays.stream(req.getCookies()).noneMatch(
-                        cookie -> cookie.getName().equals("browser-version") && cookie.getValue().equals("ok"))) {
-
-                    String userAgent = req.getHeader("User-Agent");
-
-                    if (browserIsUpToDate(userAgent))
-                        req.getRequestDispatcher(req.getContextPath() + "/jsp/up-to-date.jsp").forward(request, response);
-                    else {
-                        resp.addCookie(new Cookie("browser-version", "ok"));
-                        chain.doFilter(request, response);
-                    }
-                } else
+                if (browserIsUpToDate(userAgent))
+                    req.getRequestDispatcher(req.getContextPath() + "/jsp/up-to-date.jsp").forward(request, response);
+                else {
+                    resp.addCookie(new Cookie("browser-version", "ok"));
                     chain.doFilter(request, response);
-            }
+                }
+            } else
+                chain.doFilter(request, response);
         }
     }
 

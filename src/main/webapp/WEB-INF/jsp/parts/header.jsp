@@ -41,14 +41,6 @@
                 <div class="mainmenu pull-left">
                     <ul class="nav navbar-nav collapse navbar-collapse">
                         <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                        <li class="dropdown"><a href="#" class="active">Shop<i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <li><a href="${pageContext.request.contextPath}/cart">Cart</a></li>
-                                <c:if test="${pageContext.request.userPrincipal eq null}">
-                                    <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
-                                </c:if>
-                            </ul>
-                        </li>
                         <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
                         <c:if test="${pageContext.request.userPrincipal.name eq \"admin\"}">
                             <li><a href="${pageContext.request.contextPath}/admin">Admin-page</a></li>

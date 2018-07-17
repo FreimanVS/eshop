@@ -38,7 +38,6 @@ public class FilterServlet extends HttpServlet {
         List<Goods> goods = searchService.byPrice(from, to);
         String json = JSONB.toJson(goods);
         resp.setContentType("application/json");
-        resp.setCharacterEncoding("utf8");
 
         try (PrintWriter pw = resp.getWriter()) {
             pw.println(json);

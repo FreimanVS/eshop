@@ -1,6 +1,6 @@
 package com.freimanvs.shops.eshop.mail.servlet;
 
-import com.freimanvs.shops.eshop.mail.EmailUtil;
+import com.freimanvs.shops.eshop.mail.EmailService;
 import org.apache.log4j.Logger;
 
 import javax.inject.Inject;
@@ -17,11 +17,11 @@ import java.util.Date;
 public class NewsLettersServlet extends HttpServlet {
 
     @Inject
-    private EmailUtil emailUtil;
+    private EmailService emailService;
 
     private static final String FROM_EMAIL = "eshop@mail.ru";
     private static final String FROM_PERSON = "eshop manager";
-    private static final Logger LOGGER = Logger.getLogger(EmailUtil.class);
+    private static final Logger LOGGER = Logger.getLogger(EmailService.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,7 +34,7 @@ public class NewsLettersServlet extends HttpServlet {
             String body = "Hello!";
             body = body + "\r\nTime is: " + new Date();
 
-            emailUtil.sendEmail(FROM_PERSON, FROM_EMAIL, email, subject, body);
+            emailService.sendEmail(FROM_PERSON, FROM_EMAIL, email, subject, body);
 
             pw.println("<html>");
             pw.println("<p>The file has been sent to " + email + " successfully</p>");
