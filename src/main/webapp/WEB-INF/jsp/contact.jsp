@@ -38,6 +38,40 @@
     <%@ include file="/WEB-INF/jsp/parts/header.jsp"%>
 </header>
 <div id="contact-page" class="container">
+
+
+
+    <c:set var="locale" value="${not empty sessionScope.locale ? sessionScope.locale : pageContext.request.locale}" scope="session" />
+    <fmt:setLocale value="${locale}" />
+
+    locale req  - ${pageContext.request.locale}
+    </br> locale resp - ${pageContext.response.locale}
+    </br> session locale - ${sessionScope.locale}
+    </br> <button id="locale-button">CHANGE LOCALE</button>
+    <script>
+        $("#locale-button").on("click", function() {
+            <%--<c:set var="language" value="${not empty sessionScope.language ? sessionScope.language : not empty language ? language : pageContext.request.locale}" scope="session" />--%>
+            <%--<c:set var="language" value="en_US" scope="session" />--%>
+            <%--<fmt:setLocale value="${language}" />--%>
+            $.ajax({
+                url: contextPath + "/locale",
+                type: "GET",
+                data: ({}),
+                dataType: "JSON",
+                beforeSend: function() {
+                },
+                success: function(data) {
+                    location.reload();
+                },
+                error: function () {
+                    location.reload();
+                }
+            });
+        });
+    </script>
+
+
+
     <div class="bg">
         <div class="row">
             <div class="col-sm-8">

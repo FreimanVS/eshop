@@ -1,11 +1,9 @@
 package com.freimanvs.shops.eshop.services;
 
-import com.freimanvs.shops.eshop.dao.interfaces.GoodsDAO;
 import com.freimanvs.shops.eshop.entities.Goods;
 import com.freimanvs.shops.eshop.services.interfaces.SearchService;
 import org.hibernate.Hibernate;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;

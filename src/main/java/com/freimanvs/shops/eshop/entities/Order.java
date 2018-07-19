@@ -1,6 +1,7 @@
 package com.freimanvs.shops.eshop.entities;
 
 
+import com.freimanvs.shops.eshop.entities.interfaces.Idable;
 import io.swagger.annotations.ApiParam;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "order", schema = "eshop")
-public class Order implements Serializable {
+public class Order implements Idable, Serializable {
 
     @ApiParam(value = "id")
     @Id

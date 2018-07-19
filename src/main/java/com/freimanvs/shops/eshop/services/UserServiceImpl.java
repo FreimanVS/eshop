@@ -10,7 +10,6 @@ import com.freimanvs.shops.eshop.services.interfaces.UserService;
 import javax.ejb.EJB;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.persistence.EntityExistsException;
 import java.util.List;
 import java.util.Set;
@@ -40,8 +39,12 @@ public class UserServiceImpl implements UserService {
         //encode password
         obj.setPassword(securityBean.encodeSha(obj.getPassword()));
 
+        //add a user role
         Set<Role> roles = obj.getRoles();
-        roles.add(roleDAO.getById(1L));
+        Role user = roleDAO.getById(1L);
+        if (!roles.contains(user)) {
+            roles.add(user);
+        }
 
         return userDAO.add(obj);
     }

@@ -1,5 +1,6 @@
 package com.freimanvs.shops.eshop.entities;
 
+import com.freimanvs.shops.eshop.entities.interfaces.Idable;
 import io.swagger.annotations.ApiParam;
 import org.hibernate.validator.constraints.Email;
 
@@ -13,7 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user", schema = "eshop")
-public class User implements Serializable {
+public class User implements Idable, Serializable {
 
     @ApiParam(value = "id")
     @Id

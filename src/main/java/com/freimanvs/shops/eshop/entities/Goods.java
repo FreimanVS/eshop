@@ -1,5 +1,6 @@
 package com.freimanvs.shops.eshop.entities;
 
+import com.freimanvs.shops.eshop.entities.interfaces.Idable;
 import io.swagger.annotations.ApiParam;
 
 import javax.json.bind.annotation.JsonbTransient;
@@ -11,7 +12,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "goods", schema = "eshop")
-public class Goods implements Serializable {
+public class Goods implements Idable, Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
