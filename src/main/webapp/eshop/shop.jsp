@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="counter" uri="/custom" %>
 
 <!DOCTYPE html>
@@ -47,11 +48,11 @@
 				<div class="col-sm-3">
 					<div class="left-sidebar">
 						<div class="price-range">
-							<h2>Price Range</h2>
+							<h2><%=session.getAttribute("page.main.priceRange")%></h2>
 							<div class="well">
 									<input name="sliderValue" type="text" class="span2" value="50,150" data-slider-min="0" data-slider-max="600" data-slider-step="1" data-slider-value="[50,150]" id="sl2" ><br />
 									<b>$ 0</b> <b class="pull-right">$ 600</b>
-									</br><button onclick="filter()">accept</button>
+									</br><button onclick="filter()"><%=session.getAttribute("page.main.accept")%></button>
 							</div>
 						</div>
 
@@ -69,6 +70,7 @@
 			</div>
 		</div>
 	</section>
+
 	
 	<footer id="footer">
 		<%@ include file="/WEB-INF/jsp/parts/footer.jsp"%>

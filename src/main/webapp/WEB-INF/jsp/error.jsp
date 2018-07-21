@@ -34,8 +34,8 @@
         <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/eshop/eshop/images/home/logo.png" alt="" /></a>
     </div>
     <div class="content-404">
-        <h1><b>OPPS!</b> Wrong login or password</h1>
-        <h2><a href="${pageContext.request.contextPath}/">Bring me back Home</a></h2>
+        <h1><%=session.getAttribute("errors.badCredentials")%></h1>
+        <h2><a href="${pageContext.request.contextPath}/"><%=session.getAttribute("errors.back")%></a></h2>
     </div>
 </div>
 

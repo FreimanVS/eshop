@@ -38,68 +38,34 @@
     <%@ include file="/WEB-INF/jsp/parts/header.jsp"%>
 </header>
 <div id="contact-page" class="container">
-
-
-
-    <c:set var="locale" value="${not empty sessionScope.locale ? sessionScope.locale : pageContext.request.locale}" scope="session" />
-    <fmt:setLocale value="${locale}" />
-
-    locale req  - ${pageContext.request.locale}
-    </br> locale resp - ${pageContext.response.locale}
-    </br> session locale - ${sessionScope.locale}
-    </br> <button id="locale-button">CHANGE LOCALE</button>
-    <script>
-        $("#locale-button").on("click", function() {
-            <%--<c:set var="language" value="${not empty sessionScope.language ? sessionScope.language : not empty language ? language : pageContext.request.locale}" scope="session" />--%>
-            <%--<c:set var="language" value="en_US" scope="session" />--%>
-            <%--<fmt:setLocale value="${language}" />--%>
-            $.ajax({
-                url: contextPath + "/locale",
-                type: "GET",
-                data: ({}),
-                dataType: "JSON",
-                beforeSend: function() {
-                },
-                success: function(data) {
-                    location.reload();
-                },
-                error: function () {
-                    location.reload();
-                }
-            });
-        });
-    </script>
-
-
-
     <div class="bg">
         <div class="row">
             <div class="col-sm-8">
                 <div class="contact-form">
-                    <h2 class="title text-center">Get In Touch</h2>
+                    <h2 class="title text-center"><%=session.getAttribute("page.contact.getInTouch")%></h2>
                     <div class="status alert alert-success" style="display: none"></div>
                     <form id="main-contact-form" class="contact-form row" name="contact-form" method="POST" action="${pageContext.request.contextPath}/contact" >
                         <div class="form-group col-md-6">
-                            <input type="text" name="fromName" class="form-control" required="required" placeholder="Name">
+                            <input type="text" name="fromName" class="form-control" required="required" placeholder="<%=session.getAttribute("page.contact.name")%>">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="email" name="fromEmail" class="form-control" required="required" placeholder="Email">
+                            <input type="email" name="fromEmail" class="form-control" required="required" placeholder="<%=session.getAttribute("page.contact.email")%>">
                         </div>
                         <div class="form-group col-md-12">
-                            <input type="text" name="subject" class="form-control" required="required" placeholder="Subject">
+                            <input type="text" name="subject" class="form-control" required="required" placeholder="<%=session.getAttribute("page.contact.subject")%>">
                         </div>
                         <div class="form-group col-md-12">
-                            <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+                            <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="<%=session.getAttribute("page.contact.message")%>"></textarea>
                         </div>
                         <div class="form-group col-md-12">
-                            <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                            <input type="submit" name="submit" class="btn btn-primary pull-right" value="<%=session.getAttribute("page.contact.submit")%>">
                         </div>
                     </form>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="contact-info">
-                    <h2 class="title text-center">Contact Info</h2>
+                    <h2 class="title text-center"><%=session.getAttribute("page.contact.contactInfo")%></h2>
                     <address>
                         <p>Eshop Inc.</p>
                         <p>3536  Musgrave Street Oklahoma City Oklahoma </p>

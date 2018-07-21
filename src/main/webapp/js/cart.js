@@ -1,6 +1,12 @@
 var contextPath = $('#contextPathHolder').attr('data-contextPath');
+var confirmation = "";
+
+$(document).ready(function() {
+    confirmation = $("#page_cart_confirmation").val()
+});
+
 function removeFromCart(id) {
-    if (!(confirm('Are you sure?'))) {
+    if (!(confirm(confirmation))) {
         return false;
     }
     $.ajax({

@@ -2,6 +2,7 @@ package com.freimanvs.shops.eshop.services;
 
 import com.freimanvs.shops.eshop.entities.Goods;
 import com.freimanvs.shops.eshop.services.interfaces.SearchService;
+import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 
 import javax.ejb.Stateless;
@@ -22,10 +23,8 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public List<Goods> find(String q) {
         TypedQuery<Goods> query = em.createQuery("select g from Goods g"
-                +" WHERE g.name LIKE :name"
-                + " OR g.img LIKE :img", Goods.class)
-                .setParameter("name", "%"+q+"%")
-                .setParameter("img", "%"+q+"%");
+                +" WHERE g.name LIKE :name", Goods.class)
+                .setParameter("name", "%"+q+"%");
 
         List<Goods> list = query.getResultList();
 

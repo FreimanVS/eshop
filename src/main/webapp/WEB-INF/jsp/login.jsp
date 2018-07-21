@@ -42,35 +42,31 @@
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
-						<h2>Login to your account</h2>
+						<h2><%=session.getAttribute("page.login.auth.topic")%></h2>
 						<div style="color:red;text-align: center";>${param.error}</div>
 						<form method="POST" action="j_security_check">
-							<input type="text" placeholder="Name" name="j_username" required="required" size="25"
+							<input type="text" placeholder="<%=session.getAttribute("page.login.auth.name")%>" name="j_username" required="required" size="25"
 								   minlength="5" maxlength="100" autofocus />
-							<input type="password" placeholder="Password" name="j_password" required="required" size="25"
+							<input type="password" placeholder="<%=session.getAttribute("page.login.auth.password")%>" name="j_password" required="required" size="25"
 								   minlength="5" maxlength="100" />
-							<span>
-								<input type="checkbox" class="checkbox"> 
-								Keep me signed in
-							</span>
-							<button class="btn btn-default">Login</button>
+							<button class="btn btn-default"><%=session.getAttribute("page.login.auth.confirm")%></button>
 						</form>
 					</div>
 				</div>
 				<div class="col-sm-1">
-					<h2 class="or">OR</h2>
+					<h2 class="or"><%=session.getAttribute("page.login.or")%></h2>
 				</div>
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
-						<h2>New User Signup!</h2>
+						<h2><%=session.getAttribute("page.login.register.topic")%></h2>
 						<form method="POST" action="${pageContext.request.contextPath}/register">
-							<input type="text" placeholder="Name" name="login" required="required" size="25"
+							<input type="text" placeholder="<%=session.getAttribute("page.login.register.name")%>" name="login" required="required" size="25"
 								   minlength="5" maxlength="100" />
-							<input type="password" placeholder="Password" name="password" required="required" size="25"
+							<input type="password" placeholder="<%=session.getAttribute("page.login.register.password")%>" name="password" required="required" size="25"
 								   minlength="5" maxlength="100" />
-							<input type="email" placeholder="Email" name="email" required="required" size="25"
+							<input type="email" placeholder="<%=session.getAttribute("page.login.register.email")%>" name="email" required="required" size="25"
 								   minlength="5" maxlength="100" />
-							<button type="submit" class="btn btn-default">Signup</button>
+							<button type="submit" class="btn btn-default"><%=session.getAttribute("page.login.register.confirm")%></button>
 						</form>
 					</div>
 				</div>

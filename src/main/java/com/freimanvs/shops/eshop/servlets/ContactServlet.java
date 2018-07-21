@@ -34,17 +34,14 @@ public class ContactServlet extends HttpServlet {
         String message = request.getParameter("message");
         final String TO_EMAIL = "ii5557261@mail.ru";
 
-        response.setContentType("text/html");
-        try (PrintWriter pw = response.getWriter()){
+        try {
             emailService.sendEmail(fromName, fromEmail, TO_EMAIL, subject, message);
-
-            pw.println("<html>");
-            pw.println("<p>The file has been sent successfully</p>");
-            pw.println("<p><a href=\"" + request.getContextPath() + "/\">main page</a></p>");
-            pw.println("</html>");
         } catch (Exception e) {
             LOGGER.warn(e.getLocalizedMessage());
             throw new ServletException(e);
+        } finally {
+            String prevLink = request.getHeader("referer");
+            response.sendRedirect(prevLink);
         }
     }
 }

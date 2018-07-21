@@ -31,8 +31,8 @@
 <body>
 <div class="container text-center">
     <div class="content-404">
-        <h1><b>OPPS!</b> Access Denied</h1>
-        <h2><a href="${pageContext.request.contextPath}/">Bring me back Home</a></h2>
+        <h1><%=session.getAttribute("errors.403")%></h1>
+        <h2><a href="${pageContext.request.contextPath}/"><%=session.getAttribute("errors.back")%></a></h2>
     </div>
 </div>
 

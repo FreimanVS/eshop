@@ -39,21 +39,15 @@
 
 	<section id="cart_items">
 		<div class="container">
-			<div class="breadcrumbs">
-				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
-				  <li class="active">Shopping Cart</li>
-				</ol>
-			</div>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
+							<td class="image"><%=session.getAttribute("page.cart.item")%></td>
 							<td class="description"></td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
-							<td class="total">Total</td>
+							<td class="price"><%=session.getAttribute("page.cart.price")%></td>
+							<td class="quantity"><%=session.getAttribute("page.cart.quantity")%></td>
+							<td class="total"><%=session.getAttribute("page.cart.total")%></td>
 							<td></td>
 						</tr>
 					</thead>
@@ -91,7 +85,7 @@
 
 						</td>
 						<td class="cart_description">
-							TOTAL
+							<%=session.getAttribute("page.cart.total")%>
 						</td>
 						<td class="cart_price">
 
@@ -119,26 +113,18 @@
         <div class="row">
             <div class="col-sm-offset-4 clearfix">
                 <div class="bill-to">
-                    <p>Bill To</p>
+                    <p><%=session.getAttribute("page.cart.to")%></p>
                     <div class="form-one">
                         <form method="POST" action="${pageContext.request.contextPath}/order">
-                            <%--<label for="name">Name:</label>--%>
-                            <input id="name" type="text" name="name" placeholder="name"/>
-                            <%--<label for="phone">Phone:</label>--%>
-                            <input id="phone" type="text" name="phone" placeholder="phone"/>
-                            <%--<label for="phone">Street:</label>--%>
-                            <input id="street" type="text" name="street" placeholder="street"/>
-                            <%--<label for="house">House:</label>--%>
-                            <input id="house" type="text" name="house" placeholder="house"/>
-                            <%--<br> <label for="apartment">Apartment:</label>--%>
-                            <input id="apartment" type="text" name="apartment" placeholder="apartment"/>
-                            <%--<label for="floor">Floor:</label>--%>
-                            <input id="floor" type="text" name="floor" placeholder="floor"/>
-                            <%--<label for="codeEntrance">Code of entrance:</label>--%>
-                            <input id="codeEntrance" type="codeEntrance" name="codeEntrance" placeholder="code of entrance"/>
-                            <%--<br> <label for="comment">Any additional information:</label>--%>
-                            <textarea id="comment" name="comment" placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
-                            <button class="btn btn-default check_out">Send order</button>
+                            <input id="name" type="text" name="name" placeholder="<%=session.getAttribute("page.cart.name")%>" required/>
+                            <input id="phone" type="text" name="phone" placeholder="<%=session.getAttribute("page.cart.phone")%>" required/>
+                            <input id="street" type="text" name="street" placeholder="<%=session.getAttribute("page.cart.street")%>" required/>
+                            <input id="house" type="text" name="house" placeholder="<%=session.getAttribute("page.cart.house")%>" required/>
+                            <input id="apartment" type="text" name="apartment" placeholder="<%=session.getAttribute("page.cart.apartment")%>" required/>
+                            <input id="floor" type="text" name="floor" placeholder="<%=session.getAttribute("page.cart.floor")%>" required/>
+                            <input id="codeEntrance" type="codeEntrance" name="codeEntrance" placeholder="<%=session.getAttribute("page.cart.code")%>"/>
+                            <textarea id="comment" name="comment" placeholder="<%=session.getAttribute("page.cart.comment")%>" rows="16"></textarea>
+                            <button class="btn btn-default check_out"><%=session.getAttribute("page.cart.submit")%></button>
                         </form>
                     </div>
                 </div>

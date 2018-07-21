@@ -4,17 +4,17 @@
             <div class="col-sm-2">
                 <div class="companyinfo">
                     <h2><span>e</span>shop</h2>
-                    <p>The best goods in the world</p>
+                    <p><%=session.getAttribute("page.footer.logo.description")%></p>
                 </div>
             </div>
 
             <div class="col-sm-3 col-md-offset-7">
                 <div class="single-widget">
-                    <h2>About Eshop</h2>
+                    <h2><%=session.getAttribute("page.footer.about")%> Eshop</h2>
                     <form method="POST" action="${pageContext.request.contextPath}/newsLetters" class="searchform">
-                        <input name="email" type="text" placeholder="Your email address" />
+                        <input name="email" type="text" placeholder="<%=session.getAttribute("page.footer.about.email")%>" />
                         <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                        <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                        <p><%=session.getAttribute("page.footer.about.description")%></p>
                     </form>
                 </div>
             </div>

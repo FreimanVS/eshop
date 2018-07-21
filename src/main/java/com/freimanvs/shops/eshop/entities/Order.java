@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiParam;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -66,7 +67,6 @@ public class Order implements Idable, Serializable {
     private String floor;
 
     @ApiParam(value = "codeEntrance")
-    @NotBlank
     @Column(name="codeEntrance")
     private String codeEntrance;
 

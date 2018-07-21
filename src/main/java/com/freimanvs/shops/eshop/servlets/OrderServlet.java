@@ -5,6 +5,7 @@ import com.freimanvs.shops.eshop.entities.Goods;
 import com.freimanvs.shops.eshop.entities.Order;
 import com.freimanvs.shops.eshop.entities.User;
 import com.freimanvs.shops.eshop.services.interfaces.UserService;
+import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @WebServlet("/order")
@@ -27,6 +29,8 @@ public class OrderServlet extends HttpServlet {
 
     @Inject
     private UserService userService;
+
+    private static final Logger LOGGER = Logger.getLogger(OrderServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -67,12 +71,20 @@ public class OrderServlet extends HttpServlet {
 
         Long id = orderDAO.add(order);
 
+        Locale sessionLocale = (Locale)req.getSession().getAttribute("locale");
+        Locale locale = sessionLocale != null ? sessionLocale : resp.getLocale();
 
-
+        resp.setCharacterEncoding("utf8");
+        resp.setContentType("text/html");
         try (PrintWriter pw = resp.getWriter()) {
             pw.println("<html>");
-            pw.println("Your order id is: #" + id);
-            pw.println("<br><a href=\"" + req.getContextPath() + "/" + "\">to main page</a>");
+            if (locale.equals(new Locale("ru", "RU"))) {
+                pw.println("Номер вашего заказа: #" + id);
+                pw.println("<br><a href=\"" + req.getContextPath() + "/" + "\">вернуться на Главную</a>");
+            } else {
+                pw.println("Your order id is: #" + id);
+                pw.println("<br><a href=\"" + req.getContextPath() + "/" + "\">to main page</a>");
+            }
             pw.println("</html>");
         }
     }
