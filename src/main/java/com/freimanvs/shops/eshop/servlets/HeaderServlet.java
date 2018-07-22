@@ -1,7 +1,6 @@
 package com.freimanvs.shops.eshop.servlets;
 
 import com.freimanvs.shops.eshop.utils.MessageSource;
-import org.apache.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -29,9 +28,6 @@ public class HeaderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.session = req.getSession();
-//        this.session.setAttribute("locale", resp.getLocale());
-//        locale = (Locale) this.session.getAttribute("locale");
-
         locale = this.session.getAttribute("locale") == null ? resp.getLocale() : (Locale)req.getSession().getAttribute("locale");
         setMessage("page.header.home");
         setMessage("page.header.contact");

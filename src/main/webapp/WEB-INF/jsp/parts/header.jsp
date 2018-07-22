@@ -30,7 +30,7 @@
             <div class="col-sm-8">
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
-                        <li><a href="${pageContext.request.contextPath}/cart"><i class="fa fa-shopping-cart"></i><%=session.getAttribute("page.header.cart")%></a></li>
+                        <li><a id="cart" href="${pageContext.request.contextPath}/cart"><i class="fa fa-shopping-cart"></i><%=session.getAttribute("page.header.cart")%></a></li>
                         <c:choose>
                             <c:when test="${pageContext.request.userPrincipal ne null}">
                                 <li><a href = ""><c:out value="Hello, <b>${pageContext.request.userPrincipal.name}</b>!" escapeXml="false"></c:out></a></li>
