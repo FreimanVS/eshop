@@ -12,7 +12,7 @@ import static io.restassured.RestAssured.when;
 import static org.junit.Assert.*;
 
 @Ignore
-public class UserRestTest {
+public class GoodsResourceTest {
     @BeforeClass
     public static void before() {
         RestAssured.baseURI = BASE_URI;
@@ -21,11 +21,11 @@ public class UserRestTest {
 
     @Test
     public void getALL() {
-        when().request("GET", CONTEXT_PATH + "/api/v1/users").then().statusCode(200);
+        when().request("GET", CONTEXT_PATH + "/api/v1/goods").then().statusCode(200);
     }
 
     @Test
     public void getById() {
-        when().request("GET", CONTEXT_PATH + "/api/v1/users/1").then().statusCode(200);
+        when().request("GET", CONTEXT_PATH + "/api/v1/good/1s").then().statusCode(200);
     }
 }

@@ -37,10 +37,6 @@
     <%@ include file="/WEB-INF/jsp/parts/header.jsp"%>
 </header>
 
-<section id="advertisement">
-    <%@ include file="/WEB-INF/jsp/parts/advertisement.jsp"%>
-</section>
-
 <section>
     <div class="container">
         <div class="row">

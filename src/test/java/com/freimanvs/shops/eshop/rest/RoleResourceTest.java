@@ -11,7 +11,7 @@ import static com.freimanvs.shops.eshop.Constants.PORT;
 import static io.restassured.RestAssured.when;
 
 @Ignore
-public class RoleRestTest {
+public class RoleResourceTest {
 
     @BeforeClass
     public static void before() {

@@ -8,21 +8,24 @@ import java.util.ResourceBundle;
 @RequestScoped
 public class MessageSource {
 
-    private ResourceBundle defaultBundle = ResourceBundle.getBundle("MessageResources");
-    private ResourceBundle ruruBundle = ResourceBundle.getBundle("MessageResources_ruru");
+    private Locale ruLocale = new Locale("ru", "RU");
+    private ResourceBundle defaultBundle = ResourceBundle.getBundle("MessageResources", Locale.getDefault());
+    private ResourceBundle ruBundle = ResourceBundle.getBundle("MessageResources_ru", ruLocale);
 
-    private Locale ruRULocale = new Locale("ru", "RU");
+    public MessageSource() {
+        Locale.setDefault(Locale.ENGLISH);
+    }
 
     public String getMessage(String key, Locale locale) {
-        if (locale.equals(ruRULocale))
-            return ruruBundle.getString(key);
+        if (locale.equals(ruLocale))
+            return ruBundle.getString(key);
         else
             return defaultBundle.getString(key);
     }
 
     public Enumeration<String> getKeys(Locale locale) {
-        if (locale.equals(ruRULocale))
-            return ruruBundle.getKeys();
+        if (locale.equals(ruLocale))
+            return ruBundle.getKeys();
         else
             return defaultBundle.getKeys();
     }

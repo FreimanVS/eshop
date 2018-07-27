@@ -34,9 +34,9 @@ public class RestApplication extends Application {
     }
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(GoodsRest.class);
-        resources.add(RoleRest.class);
-        resources.add(OrderRest.class);
-        resources.add(UserRest.class);
+        resources.add(GoodsResource.class);
+        resources.add(RoleResource.class);
+        resources.add(OrderResource.class);
+        resources.add(UserResource.class);
     }
 }

@@ -111,7 +111,6 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.195</version>
-            <!--<scope>test</scope>-->
         </dependency>
 
         <dependency>
@@ -119,12 +118,6 @@
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>javax.validation</groupId>-->
-        <!--<artifactId>validation-api</artifactId>-->
-        <!--<version>2.0.1.Final</version>-->
-        <!--<scope>provided</scope>-->
-        <!--</dependency>-->
 
 
 
@@ -133,43 +126,6 @@
             <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-        <!--<dependency>
-          <groupId>javassist</groupId>
-          <artifactId>javassist</artifactId>
-          <version>3.12.1.GA</version>
-        </dependency>-->
-        <!--<dependency>
-          <groupId>org.springframework.security</groupId>
-          <artifactId>spring-security-taglibs</artifactId>
-          <version>${spring-security.version}</version>
-        </dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>commons-logging</groupId>-->
-        <!--<artifactId>commons-logging</artifactId>-->
-        <!--<version>1.1.1</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>ru.otus.resource</groupId>-->
-            <!--<artifactId>ObjectResourceFactory</artifactId>-->
-            <!--<version>1.0-SNAPSHOT</version>-->
-            <!--<scope>system</scope>-->
-            <!--<systemPath>${project.basedir}/src/main/resources/xml-resource-factory.jar</systemPath>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.freimanvs.resources</groupId>-->
-            <!--<artifactId>XmlToObjFactory</artifactId>-->
-            <!--<version>1.0</version>-->
-            <!--<scope>system</scope>-->
-            <!--<systemPath>${project.basedir}/src/main/resources/xml-to-obj-factory.jar</systemPath>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-        <!--<groupId>com.freimanvs.resources</groupId>-->
-        <!--<artifactId>xml-to-obj-factory</artifactId>-->
-        <!--<version>1.0</version>-->
-        <!--<scope>compile</scope>-->
-        <!--</dependency>-->
         <!-- JSON libraries  -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -232,13 +188,6 @@
             <version>1.12</version>
         </dependency>
 
-        <!-- Jersey -->
-        <!--<dependency>-->
-        <!--<groupId>org.glassfish.jersey</groupId>-->
-        <!--<artifactId>jax-rs-ri</artifactId>-->
-        <!--<version>2.0-rc1</version>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-server</artifactId>
@@ -259,12 +208,6 @@
             <artifactId>jersey-bean-validation</artifactId>
             <version>${jersey.version}</version>
         </dependency>
-
-        <!--<dependency>-->
-        <!--<groupId>org.glassfish.jersey.media</groupId>-->
-        <!--<artifactId>jersey-media-json-jackson</artifactId>-->
-        <!--<version>2.3.1</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-jersey-jaxrs</artifactId>
@@ -277,51 +220,6 @@
             <version>8.0</version>
             <scope>provided</scope>
         </dependency>
-
-        <!--<dependency>-->
-        <!--<groupId>org.glassfish.main.common</groupId>-->
-        <!--<artifactId>glassfish-ee-api</artifactId>-->
-        <!--<version>5.0</version>-->
-        <!--<scope>system</scope>-->
-        <!--<systemPath>D:/glassfish5/glassfish/modules/glassfish-ee-api.jar</systemPath>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.glassfish.main.security</groupId>-->
-        <!--<artifactId>security</artifactId>-->
-        <!--<version>5.0</version>-->
-        <!--<scope>system</scope>-->
-        <!--<systemPath>D:/glassfish5/glassfish/modules/security.jar</systemPath>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.security</groupId>-->
-        <!--<artifactId>spring-security-core</artifactId>-->
-        <!--<version>5.0.0.RELEASE</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.security</groupId>-->
-        <!--<artifactId>spring-security-web</artifactId>-->
-        <!--<version>5.0.0.RELEASE</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.security</groupId>-->
-        <!--<artifactId>spring-security-config</artifactId>-->
-        <!--<version>5.0.0.RELEASE</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.security</groupId>-->
-        <!--<artifactId>spring-security-taglibs</artifactId>-->
-        <!--<version>5.0.0.RELEASE</version>-->
-        <!--</dependency>-->
-
-
-        <!--<dependency>-->
-        <!--<groupId>org.glassfish.main.appclient.client</groupId>-->
-        <!--<artifactId>gf-client</artifactId>-->
-        <!--<version>5.0</version>-->
-        <!--<scope>system</scope>-->
-        <!--<systemPath>D:/glassfish5/glassfish/modules/security.jar</systemPath>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
@@ -333,18 +231,7 @@
             <artifactId>security-ee</artifactId>
             <version>5.0</version>
             <scope>provided</scope>
-            <!--<scope>system</scope>-->
-            <!--<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/security-ee.jar</systemPath>-->
-            <!--<systemPath>${project.basedir}/src/main/resources/security-ee.jar</systemPath>-->
-            <!--<systemPath>D:/glassfish5/glassfish/modules/security-ee.jar</systemPath>-->
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.glassfish.main.security/security-ee -->
-        <!--<dependency>-->
-        <!--<groupId>org.glassfish.main.security</groupId>-->
-        <!--<artifactId>security-ee</artifactId>-->
-        <!--<version>5.0</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>org.slf4j</groupId>

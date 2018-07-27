@@ -63,7 +63,9 @@
                     <ul class="nav navbar-nav collapse navbar-collapse">
                         <li><a href="${pageContext.request.contextPath}/"><%=session.getAttribute("page.header.home")%></a></li>
                         <li><a href="${pageContext.request.contextPath}/contact"><%=session.getAttribute("page.header.contact")%></a></li>
-                        <c:if test="${pageContext.request.userPrincipal.name eq \"admin\"}">
+
+                        <% request.setAttribute("isAdmin", request.isUserInRole("admin")); %>
+                        <c:if test="${requestScope.isAdmin}">
                             <li><a href="${pageContext.request.contextPath}/admin"><%=session.getAttribute("page.header.admin")%></a></li>
                         </c:if>
                     </ul>

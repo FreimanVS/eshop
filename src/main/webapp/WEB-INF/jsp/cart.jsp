@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="counter" uri="/custom" %>
 
 <!DOCTYPE html>
@@ -72,7 +73,7 @@
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">${entry.key.price * entry.value}</p>
+								<p class="cart_total_price"><fmt:formatNumber value="${entry.key.price * entry.value}" type="currency" currencySymbol=""/></p>
 							</td>
 							<td class="cart_delete">
 								<button class="cart_quantity_delete" onclick="removeFromCart(<c:out value="${entry.key.id}"/>)"><i class="fa fa-times"></i></button>
@@ -98,7 +99,7 @@
 								<c:forEach var="goods" items="${mapOfGoods}">
 									<c:set var="total" value="${total + goods.key.price * goods.value}" />
 								</c:forEach>
-								<c:out value="${total}"/></td>
+							<fmt:formatNumber value="${total}" type="currency" currencySymbol=""/></td>
 							</p>
 						<td class="cart_delete">
 						</td>

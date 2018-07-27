@@ -1,18 +1,12 @@
 package com.freimanvs.shops.eshop.rest;
 
-import com.freimanvs.shops.eshop.dao.interfaces.RoleDAO;
-import com.freimanvs.shops.eshop.dao.interfaces.UserDAO;
-import com.freimanvs.shops.eshop.entities.Role;
-import com.freimanvs.shops.eshop.entities.User;
+import com.freimanvs.shops.eshop.dao.interfaces.GoodsDAO;
+import com.freimanvs.shops.eshop.entities.Goods;
 import com.freimanvs.shops.eshop.rest.interceptors.NotFoundInterceptor;
 import com.freimanvs.shops.eshop.rest.interfaces.RestCrud;
-import com.freimanvs.shops.eshop.services.UserServiceImpl;
-import com.freimanvs.shops.eshop.services.interfaces.UserService;
 import io.swagger.annotations.*;
 
 import javax.ejb.EJB;
-import javax.enterprise.inject.spi.CDI;
-import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -23,8 +17,8 @@ import java.util.List;
 
 @SwaggerDefinition(
         info = @Info(
-                title = "Users Resource Swagger-generated API",
-                description = "Users Resource Description example",
+                title = "Goods Resource Swagger-generated API",
+                description = "Goods Resource Description example",
                 version = "1.0.0",
                 termsOfService = "share and care",
                 contact = @Contact(
@@ -34,7 +28,7 @@ import java.util.List;
                         name = "Apache 2.0",
                         url = "http://www.apache.org")),
         tags = {
-                @Tag(name = "Users Resource Swagger-generated API",
+                @Tag(name = "Goods Resource Swagger-generated API",
                         description = "Description Example")
         },
         basePath = "/eshop/api",
@@ -42,12 +36,13 @@ import java.util.List;
         externalDocs = @ExternalDocs(
                 value = "Developing a Swagger-enabled REST API using WebSphere Developer Tools",
                 url = "https://tinyurl.com/swagger-wlp"))
-@Api(tags = "Users Resource Swagger-generated API", produces = MediaType.APPLICATION_JSON)
+@Api(tags = "Goods Resource Swagger-generated API", produces = MediaType.APPLICATION_JSON)
 
-@Path("/v1/users")
-public class UserRest implements RestCrud<User> {
+@Path("/v1/goods")
+public class GoodsResource implements RestCrud<Goods> {
 
-    private UserService userService = CDI.current().select(UserServiceImpl.class).get();
+    @EJB
+    private GoodsDAO goodsDAO;
 
     @Context
     private UriInfo info;
@@ -63,7 +58,7 @@ public class UserRest implements RestCrud<User> {
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Override
     public Response getALL() {
-        List<User> list =  userService.getList();
+        List<Goods> list =  goodsDAO.getList();
         return Response.ok(list).build();
     }
 
@@ -78,10 +73,9 @@ public class UserRest implements RestCrud<User> {
     @POST
     @Consumes(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Override
-    public Response add(User obj) {
-        long id = userService.add(obj);
+    public Response add(Goods obj) {
+        long id = goodsDAO.add(obj);
         return Response.created(info.getAbsolutePathBuilder().path("/" + id).build()).build();
-
     }
 
     @ApiOperation(value = "Get by id",
@@ -99,8 +93,8 @@ public class UserRest implements RestCrud<User> {
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Override
     public Response getById(@PathParam("id") long id) {
-        User user = userService.getById(id);
-        return Response.ok(user).build();
+        Goods goods = goodsDAO.getById(id);
+        return Response.ok(goods).build();
     }
 
     @ApiOperation(value = "Delete",
@@ -116,7 +110,7 @@ public class UserRest implements RestCrud<User> {
     @Path("/{id}")
     @Override
     public Response delete(@PathParam("id") long id) {
-        userService.deleteById(id);
+        goodsDAO.deleteById(id);
         return Response.noContent().build();
     }
 
@@ -135,8 +129,8 @@ public class UserRest implements RestCrud<User> {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Override
-    public Response update(@PathParam("id") long id, User obj) {
-        userService.updateById(id, obj);
+    public Response update(@PathParam("id") long id, Goods obj) {
+        goodsDAO.updateById(id, obj);
         return Response.created(info.getAbsolutePath()).build();
     }
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class UnicodingUtil {
 
-    private static final String PATH = "src/main/resources/MessageResources_ruru.properties";
+    private static final String PATH = "src/main/resources/MessageResources_ru.properties";
 
     public static void main(String[] args) {
         try (java.util.Scanner sc = new java.util.Scanner(System.in)) {

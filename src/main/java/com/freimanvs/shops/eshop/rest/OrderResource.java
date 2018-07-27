@@ -1,9 +1,7 @@
 package com.freimanvs.shops.eshop.rest;
 
-import com.freimanvs.shops.eshop.dao.interfaces.GoodsDAO;
-import com.freimanvs.shops.eshop.dao.interfaces.RoleDAO;
-import com.freimanvs.shops.eshop.entities.Goods;
-import com.freimanvs.shops.eshop.entities.Role;
+import com.freimanvs.shops.eshop.dao.interfaces.OrderDAO;
+import com.freimanvs.shops.eshop.entities.Order;
 import com.freimanvs.shops.eshop.rest.interceptors.NotFoundInterceptor;
 import com.freimanvs.shops.eshop.rest.interfaces.RestCrud;
 import io.swagger.annotations.*;
@@ -19,8 +17,8 @@ import java.util.List;
 
 @SwaggerDefinition(
         info = @Info(
-                title = "Roles Resource Swagger-generated API",
-                description = "Roles Resource Description example",
+                title = "Orders Resource Swagger-generated API",
+                description = "Orders Resource Description example",
                 version = "1.0.0",
                 termsOfService = "share and care",
                 contact = @Contact(
@@ -30,7 +28,7 @@ import java.util.List;
                         name = "Apache 2.0",
                         url = "http://www.apache.org")),
         tags = {
-                @Tag(name = "Roles Resource Swagger-generated API",
+                @Tag(name = "Orders Resource Swagger-generated API",
                         description = "Description Example")
         },
         basePath = "/eshop/api",
@@ -38,13 +36,13 @@ import java.util.List;
         externalDocs = @ExternalDocs(
                 value = "Developing a Swagger-enabled REST API using WebSphere Developer Tools",
                 url = "https://tinyurl.com/swagger-wlp"))
-@Api(tags = "Roles Resource Swagger-generated API", produces = MediaType.APPLICATION_JSON)
+@Api(tags = "Orders Resource Swagger-generated API", produces = MediaType.APPLICATION_JSON)
 
-@Path("/v1/roles")
-public class RoleRest implements RestCrud<Role> {
+@Path("/v1/orders")
+public class OrderResource implements RestCrud<Order> {
 
     @EJB
-    private RoleDAO roleDAO;
+    private OrderDAO orderDAO;
 
     @Context
     private UriInfo info;
@@ -60,7 +58,7 @@ public class RoleRest implements RestCrud<Role> {
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Override
     public Response getALL() {
-        List<Role> list =  roleDAO.getList();
+        List<Order> list =  orderDAO.getList();
         return Response.ok(list).build();
     }
 
@@ -75,8 +73,8 @@ public class RoleRest implements RestCrud<Role> {
     @POST
     @Consumes(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Override
-    public Response add(Role obj) {
-        long id = roleDAO.add(obj);
+    public Response add(Order obj) {
+        long id = orderDAO.add(obj);
         return Response.created(info.getAbsolutePathBuilder().path("/" + id).build()).build();
     }
 
@@ -95,8 +93,8 @@ public class RoleRest implements RestCrud<Role> {
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Override
     public Response getById(@PathParam("id") long id) {
-        Role role = roleDAO.getById(id);
-        return Response.ok(role).build();
+        Order order = orderDAO.getById(id);
+        return Response.ok(order).build();
     }
 
     @ApiOperation(value = "Delete",
@@ -112,7 +110,7 @@ public class RoleRest implements RestCrud<Role> {
     @Path("/{id}")
     @Override
     public Response delete(@PathParam("id") long id) {
-        roleDAO.deleteById(id);
+        orderDAO.deleteById(id);
         return Response.noContent().build();
     }
 
@@ -131,8 +129,8 @@ public class RoleRest implements RestCrud<Role> {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Override
-    public Response update(@PathParam("id") long id, Role obj) {
-        roleDAO.updateById(id, obj);
+    public Response update(@PathParam("id") long id, Order obj) {
+        orderDAO.updateById(id, obj);
         return Response.created(info.getAbsolutePath()).build();
     }
 }

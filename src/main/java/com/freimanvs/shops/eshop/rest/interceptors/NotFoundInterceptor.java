@@ -3,19 +3,16 @@ package com.freimanvs.shops.eshop.rest.interceptors;
 import com.freimanvs.shops.eshop.dao.interfaces.GoodsDAO;
 import com.freimanvs.shops.eshop.dao.interfaces.OrderDAO;
 import com.freimanvs.shops.eshop.dao.interfaces.RoleDAO;
-import com.freimanvs.shops.eshop.entities.Order;
-import com.freimanvs.shops.eshop.rest.GoodsRest;
-import com.freimanvs.shops.eshop.rest.OrderRest;
-import com.freimanvs.shops.eshop.rest.RoleRest;
-import com.freimanvs.shops.eshop.rest.UserRest;
+import com.freimanvs.shops.eshop.rest.GoodsResource;
+import com.freimanvs.shops.eshop.rest.OrderResource;
+import com.freimanvs.shops.eshop.rest.RoleResource;
+import com.freimanvs.shops.eshop.rest.UserResource;
 import com.freimanvs.shops.eshop.services.interfaces.UserService;
 
 import javax.ejb.EJB;
-import javax.enterprise.inject.spi.CDI;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
-import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.NotFoundException;
 
 public class NotFoundInterceptor {
@@ -35,28 +32,28 @@ public class NotFoundInterceptor {
     @AroundInvoke
     public Object notFound(InvocationContext ic) throws Exception {
         Object[] params = ic.getParameters();
-        if (ic.getTarget() instanceof GoodsRest) {
+        if (ic.getTarget() instanceof GoodsResource) {
             for (Object param : params) {
                 if (param instanceof Long
                         && goodsDAO.getById((Long) param) == null) {
                     throw new NotFoundException();
                 }
             }
-        } else if (ic.getTarget() instanceof RoleRest) {
+        } else if (ic.getTarget() instanceof RoleResource) {
             for (Object param : params) {
                 if (param instanceof Long
                         && roleDAO.getById((Long) param) == null) {
                     throw new NotFoundException();
                 }
             }
-        } else if (ic.getTarget() instanceof OrderRest) {
+        } else if (ic.getTarget() instanceof OrderResource) {
             for (Object param : params) {
                 if (param instanceof Long
                         && orderDao.getById((Long) param) == null) {
                     throw new NotFoundException();
                 }
             }
-        } else if (ic.getTarget() instanceof UserRest) {
+        } else if (ic.getTarget() instanceof UserResource) {
             for (Object param : params) {
                 if (param instanceof Long
                         && userService.getById((Long) param) == null) {

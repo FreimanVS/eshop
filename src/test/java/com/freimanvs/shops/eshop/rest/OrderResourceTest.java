@@ -12,7 +12,7 @@ import static io.restassured.RestAssured.when;
 import static org.junit.Assert.*;
 
 @Ignore
-public class OrderRestTest {
+public class OrderResourceTest {
     @BeforeClass
     public static void before() {
         RestAssured.baseURI = BASE_URI;

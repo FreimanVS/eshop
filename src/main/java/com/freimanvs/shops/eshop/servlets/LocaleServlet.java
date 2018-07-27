@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 @WebServlet("/locale")
 public class LocaleServlet extends HttpServlet {
@@ -30,19 +28,16 @@ public class LocaleServlet extends HttpServlet {
         @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Locale ruRU = new Locale("ru", "RU");
-        Locale enUS = new Locale("en", "US");
-
         String l = req.getParameter("l") == null ? resp.getLocale().getLanguage() : req.getParameter("l");
         switch (l) {
             case "ru":
-                req.getSession().setAttribute("locale", ruRU);
+                req.getSession().setAttribute("locale", new Locale("ru", "RU"));
                 break;
             case "en":
-                req.getSession().setAttribute("locale", enUS);
+                req.getSession().setAttribute("locale", Locale.ENGLISH);
                 break;
             default:
-                req.getSession().setAttribute("locale", enUS);
+                req.getSession().setAttribute("locale", Locale.ENGLISH);
         }
 
         session = req.getSession();
