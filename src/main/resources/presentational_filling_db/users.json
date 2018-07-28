@@ -1,0 +1,102 @@
+[
+  {
+    "email": "ii5557261@mail.ru",
+    "id": 1,
+    "login": "admin",
+    "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+    "roles": [
+      {
+        "id": 1,
+        "name": "user"
+      },
+      {
+        "id": 2,
+        "name": "admin"
+      }
+    ]
+  },
+  {
+    "email": "asdfasfasfasdf@mail.ru",
+    "id": 2,
+    "login": "aaaaa",
+    "password": "5e846c64f2db12266e6b658a8e5b5b42cc225419b3ee1fca88acbb181ddfdb52",
+    "roles": [
+      {
+        "id": 1,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "email": "asdfasfasfd@mail.ru",
+    "id": 3,
+    "login": "abcde",
+    "password": "36bbe50ed96841d10443bcb670d6554f0a34b761be67ec9c4a8ad2c0c44ca42c",
+    "roles": [
+      {
+        "id": 1,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "email": "bbbbb@mail.ru",
+    "id": 4,
+    "login": "bbbbb",
+    "password": "ed968e840d10d2d313a870bc131a4e2c311d7ad09bdf32b3418147221f51a6e2",
+    "roles": [
+      {
+        "id": 1,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "email": "vitr@list.ru",
+    "id": 5,
+    "login": "Vitaly",
+    "password": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+    "roles": [
+      {
+        "id": 1,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "email": "zxvzvx@mail.ru",
+    "id": 6,
+    "login": "newacc3",
+    "password": "165c93d3d6a0166e80d5866c8a60295f4526fca1d10323d52d0a10ec85287d13",
+    "roles": [
+      {
+        "id": 1,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "email": "asdfxcvzxvzxv@mail.ru",
+    "id": 25,
+    "login": "asdfxcvzxvzxv",
+    "password": "d51c47e7c70632a4393d47fac48aabf4e9e52b226a5d057d3f0e46e8eda68601",
+    "roles": [
+      {
+        "id": 1,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "email": "newnameasdf@newnameasdf.ru",
+    "id": 26,
+    "login": "newnameasdf",
+    "password": "25b3900d15d559f7330113de0ec4e8adccb9a5156c7006f20a9699082c0ae134",
+    "roles": [
+      {
+        "id": 1,
+        "name": "user"
+      }
+    ]
+  }
+]

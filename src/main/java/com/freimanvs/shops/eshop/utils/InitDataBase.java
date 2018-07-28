@@ -1,34 +1,53 @@
 package com.freimanvs.shops.eshop.utils;
 
+import com.freimanvs.shops.eshop.dao.interfaces.GoodsDAO;
+import com.freimanvs.shops.eshop.dao.interfaces.OrderDAO;
 import com.freimanvs.shops.eshop.dao.interfaces.RoleDAO;
+import com.freimanvs.shops.eshop.dao.interfaces.UserDAO;
+import com.freimanvs.shops.eshop.entities.Goods;
 import com.freimanvs.shops.eshop.entities.Role;
 import com.freimanvs.shops.eshop.entities.User;
-import com.freimanvs.shops.eshop.services.interfaces.UserService;
+import com.freimanvs.shops.eshop.entities.interfaces.Idable;
 import com.freimanvs.shops.eshop.utils.interfaces.InitDBBean;
 
 import javax.ejb.*;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Set;
+import java.util.Comparator;
+import java.util.List;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class InitDataBase implements InitDBBean {
 
+    private static final String PATH_TO_ROLES = "/presentational_filling_db/roles.json";
+    private static final String PATH_TO_GOODS = "/presentational_filling_db/goods.json";
+    private static final String PATH_TO_USERS = "/presentational_filling_db/users.json";
+
     @PersistenceContext(unitName = "eshopmysql")
     private EntityManager em;
+
+    private FileManager<Role> roleFileManager = new FileManager<>();
+
+    private FileManager<User> userFileManager = new FileManager<>();
+
+    private FileManager<Goods> goodsFileManager = new FileManager<>();
 
     @EJB
     private RoleDAO roleDAO;
 
-    @Inject
-    private UserService userService;
+    @EJB
+    private UserDAO userDAO;
+
+    @EJB
+    private GoodsDAO goodsDAO;
+
+    @EJB
+    private OrderDAO orderDAO;
 
     public void init() {
         createTables();
-        addRoles();
-        addAdmins();
+        fill();
     }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -90,33 +109,24 @@ public class InitDataBase implements InitDBBean {
                 ");").executeUpdate();
     }
 
-    private void addRoles() {
-        Role userDB = roleDAO.getById(1L);
-        if (userDB == null) {
-            Role user = new Role();
-            user.setName("user");
-            roleDAO.add(user);
-        }
+    private void fill() {
+        List<Role> roles = roleFileManager.fromJsonArrayResourceToList(PATH_TO_ROLES, Role.class);
+        List<User> users = userFileManager.fromJsonArrayResourceToList(PATH_TO_USERS, User.class);
+        List<Goods> goods = goodsFileManager.fromJsonArrayResourceToList(PATH_TO_GOODS, Goods.class);
 
-        Role adminDB = roleDAO.getById(2L);
-        if (adminDB == null) {
-            Role admin = new Role();
-            admin.setName("admin");
-            roleDAO.add(admin);
-        }
-    }
+        Comparator<? extends Idable> asc = (Comparator.comparingInt(o -> (int) o.getId()));
 
-    private void addAdmins() {
-        if (userService.getByUnique("login", "admin") == null) {
-            User admin = new User();
-            admin.setLogin("admin");
-            admin.setPassword("admin");
-            admin.setEmail("admin@admin.ru");
+        roles.stream().sorted((Comparator<Role>)asc)
+                .filter(r -> roleDAO.getByUnique("name", r.getName()) == null)
+                .forEach(roleDAO::add);
 
-            Set<Role> roles = admin.getRoles();
-            roles.add(roleDAO.getById(2L));
+        users.stream().sorted((Comparator<User>)asc)
+                .filter(u -> userDAO.getByUnique("login", u.getLogin()) == null)
+                .forEach(userDAO::add);
 
-            userService.add(admin);
-        }
+        goods.stream().sorted((Comparator<Goods>)asc)
+                .filter(g -> goodsDAO.getByUnique("name", g.getName()) == null)
+                .forEach(goodsDAO::add);
+
     }
 }
