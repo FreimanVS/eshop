@@ -9,10 +9,13 @@ import com.freimanvs.shops.eshop.entities.Role;
 import com.freimanvs.shops.eshop.entities.User;
 import com.freimanvs.shops.eshop.entities.interfaces.Idable;
 import com.freimanvs.shops.eshop.utils.interfaces.InitDBBean;
+import org.apache.log4j.Logger;
 
 import javax.ejb.*;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.sql.*;
 import java.util.Comparator;
 import java.util.List;
 
@@ -20,18 +23,21 @@ import java.util.List;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class InitDataBase implements InitDBBean {
 
+    private static final Logger LOGGER = Logger.getLogger(InitDataBase.class);
+
     private static final String PATH_TO_ROLES = "/presentational_filling_db/roles.json";
     private static final String PATH_TO_GOODS = "/presentational_filling_db/goods.json";
     private static final String PATH_TO_USERS = "/presentational_filling_db/users.json";
 
+    private String URL;
+    private String LOGIN;
+    private String PASSWORD;
+
     @PersistenceContext(unitName = "eshopmysql")
     private EntityManager em;
 
-    private FileManager<Role> roleFileManager = new FileManager<>();
-
-    private FileManager<User> userFileManager = new FileManager<>();
-
-    private FileManager<Goods> goodsFileManager = new FileManager<>();
+    @Inject
+    private FileManager roleFileManager;
 
     @EJB
     private RoleDAO roleDAO;
@@ -110,9 +116,9 @@ public class InitDataBase implements InitDBBean {
     }
 
     private void fill() {
-        List<Role> roles = roleFileManager.fromJsonArrayResourceToList(PATH_TO_ROLES, Role.class);
-        List<User> users = userFileManager.fromJsonArrayResourceToList(PATH_TO_USERS, User.class);
-        List<Goods> goods = goodsFileManager.fromJsonArrayResourceToList(PATH_TO_GOODS, Goods.class);
+        List<Role> roles = (List<Role>)roleFileManager.fromJsonArrayResourceToList(PATH_TO_ROLES, Role.class);
+        List<User> users = (List<User>)roleFileManager.fromJsonArrayResourceToList(PATH_TO_USERS, User.class);
+        List<Goods> goods = (List<Goods>)roleFileManager.fromJsonArrayResourceToList(PATH_TO_GOODS, Goods.class);
 
         Comparator<? extends Idable> asc = (Comparator.comparingInt(o -> (int) o.getId()));
 
@@ -128,5 +134,49 @@ public class InitDataBase implements InitDBBean {
                 .filter(g -> goodsDAO.getByUnique("name", g.getName()) == null)
                 .forEach(goodsDAO::add);
 
+    }
+
+    public void waitForInitDB(String ip) {
+        URL = "jdbc:mysql://" + ip + ":3306/sys?useSSL=false";
+        LOGIN = "root";
+        PASSWORD = "pass";
+
+        //to sleep until a database is ready
+        while (!connIsOk()) {
+            LOGGER.warn(String.format("DB is not ready yet or incorrect data:\r\n" +
+                    "URL: %s\r\n" +
+                    "LOGIN: %s\r\n" +
+                    "PASSWORD: %s\r\n", URL, LOGIN, PASSWORD));
+            try {
+                Thread.sleep(3000L);
+            } catch (InterruptedException e) {
+                LOGGER.error(e.getLocalizedMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private boolean connIsOk() {
+        try {
+            String driver = "com.mysql.jdbc.Driver";
+            Class.forName(driver);
+        } catch (Exception e) {
+            return false;
+        }
+
+        try (Connection conn = DriverManager.getConnection(URL, LOGIN, PASSWORD);
+             Statement statement = conn.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT 1")) {
+
+            StringBuilder sb = new StringBuilder();
+            while(resultSet.next()){
+                sb.append(resultSet.getInt("1"));
+            }
+
+            return "1".equals(sb.toString());
+
+        } catch (SQLException e) {
+            return false;
+        }
     }
 }

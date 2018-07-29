@@ -2,18 +2,20 @@ package com.freimanvs.shops.eshop.utils;
 
 import com.google.gson.*;
 
+import javax.enterprise.context.Dependent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileManager<T> {
+@Dependent
+public class FileManager {
     private static final Gson gson = new Gson();
-    public List<T> fromJsonArrayToList(String jsonArray, Class<T> clazz) {
+    public List fromJsonArrayToList(String jsonArray, Class clazz) {
         JsonParser parser = new JsonParser();
         JsonArray thisJsonArray = (JsonArray) parser.parse(jsonArray);
-        List<T> list = new ArrayList<>();
+        List list = new ArrayList<>();
         for (JsonElement jsonElement : thisJsonArray) {
             JsonObject object = jsonElement.getAsJsonObject();
             list.add(gson.fromJson(object, clazz));
@@ -37,7 +39,7 @@ public class FileManager<T> {
         return get(FileManager.class.getResourceAsStream(path));
     }
 
-    public List<T> fromJsonArrayResourceToList(String path, Class<T> clazz) {
+    public List fromJsonArrayResourceToList(String path, Class clazz) {
         return fromJsonArrayToList(getFromResource(path), clazz);
     }
 }

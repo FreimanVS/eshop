@@ -5,4 +5,5 @@ import javax.ejb.Remote;
 @Remote
 public interface InitDBBean {
     void init();
+    void waitForInitDB(String ip);
 }
