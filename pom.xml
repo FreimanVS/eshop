@@ -10,7 +10,6 @@
   <packaging>war</packaging>
 
     <properties>
-        <!--<servlet.version>3.1.0</servlet.version>-->
         <servlet.version>4.0.0</servlet.version>
         <hibernate.version>5.2.2.Final</hibernate.version>
         <mysql-connector.version>5.1.39</mysql-connector.version>
@@ -37,12 +36,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>2.5.1</version>
@@ -52,12 +45,6 @@
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
             <version>10.10.2.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>3.11.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -101,32 +88,23 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-        <!-- DataBases -->
+		
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.195</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-
-
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-        <!-- JSON libraries  -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -147,11 +125,6 @@
             <artifactId>javax.json</artifactId>
             <version>1.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.11.1</version>
-        </dependency>
 
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
@@ -163,7 +136,6 @@
             <artifactId>javax.servlet.jsp.jstl</artifactId>
             <version>${jstl.version}</version>
             <exclusions>
-                <!-- jstl-api was adding selvlet-api 2.5 and jsp-api-->
                 <exclusion>
                     <artifactId>jstl-api</artifactId>
                     <groupId>javax.servlet.jsp.jstl</groupId>
@@ -260,76 +232,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>1.8.9</version>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.8.9</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.1</version>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>io.prometheus</groupId>-->
-            <!--<artifactId>simpleclient</artifactId>-->
-            <!--<version>${prometheus.client.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>io.prometheus</groupId>-->
-            <!--<artifactId>simpleclient_log4j</artifactId>-->
-            <!--<version>${prometheus.client.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>io.prometheus</groupId>-->
-            <!--<artifactId>simpleclient_servlet</artifactId>-->
-            <!--<version>${prometheus.client.version}</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>net.sf.jasperreports</groupId>-->
-            <!--<artifactId>jasperreports</artifactId>-->
-            <!--<version>6.5.1</version>-->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<artifactId>commons-logging</artifactId>-->
-                    <!--<groupId>commons-logging</groupId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>net.sf.barcode4j</groupId>-->
-            <!--<artifactId>barcode4j</artifactId>-->
-            <!--<version>2.1</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>org.apache.xmlgraphics</groupId>-->
-            <!--<artifactId>batik-bridge</artifactId>-->
-            <!--<version>1.8</version>-->
-        <!--</dependency>-->
-
-        <!--&lt;!&ndash;Also, if you check JasperReports' pom.xml&ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>net.sf.jasperreports</groupId>-->
-            <!--<artifactId>jasperreports-fonts</artifactId>-->
-            <!--<version>4.0.0</version>-->
-        <!--</dependency>-->
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.xmlgraphics/xmlgraphics-commons &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.xmlgraphics</groupId>-->
-            <!--<artifactId>xmlgraphics-commons</artifactId>-->
-            <!--<version>1.5</version>-->
-        <!--</dependency>-->
-
-
-
     </dependencies>
 
     <build>
@@ -357,44 +263,6 @@
                     <warSourceDirectory>src/main/webapp</warSourceDirectory>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>aspectj-maven-plugin</artifactId>
-                <version>1.7</version>
-                <configuration>
-                    <complianceLevel>1.8</complianceLevel>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <showWeaveInfo>true</showWeaveInfo>
-                    <verbose>true</verbose>
-                    <Xlint>ignore</Xlint>
-                    <encoding>UTF-8</encoding>
-                    <sources>
-                        <source>
-                            <basedir>src/main/java</basedir>
-                            <!--<includes>-->
-                            <!--<include>**/SomeClass.java</include>-->
-                            <!--<include>**/SomeAspect.aj</include>-->
-                            <!--</includes>-->
-                            <excludes>
-                                <exclude>**/*.xsd</exclude>
-                            </excludes>
-                        </source>
-                    </sources>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <!-- use this goal to weave all your main classes -->
-                            <goal>compile</goal>
-                            <!-- use this goal to weave all your test classes -->
-                            <goal>test-compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
